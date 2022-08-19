@@ -53,6 +53,7 @@
 		"typescript-json-schema": "^0.54.0"
 	},
 	"dependencies": {
+		"@yukikaze-bot/erlpack": "^1.0.1",
 		"@aws-sdk/client-s3": "^3.137.0",
 		"@babel/preset-typescript": "^7.15.0",
 		"@fosscord/api": "file:../api",

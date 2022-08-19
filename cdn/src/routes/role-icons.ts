@@ -52,7 +52,7 @@ router.post(
 			id: hash,
 			content_type: type.mime,
 			size,
-			url: `${endpoint}${req.baseUrl}/${role_id}/${hash}`,
+			url: `/${req.baseUrl}/${role_id}/${hash}`,
 		});
 	}
 );

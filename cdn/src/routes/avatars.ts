@@ -53,7 +53,7 @@ router.post(
 			id: hash,
 			content_type: type.mime,
 			size,
-			url: `${endpoint}${req.baseUrl}/${user_id}/${hash}`,
+			url: `/${req.baseUrl}/${user_id}/${hash}`,
 		});
 	}
 );

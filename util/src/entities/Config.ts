@@ -226,11 +226,11 @@ export const DefaultConfigOptions: ConfigValue = {
 		useFosscordEnhancements: true,
 	},
 	general: {
-		instanceName: "Fosscord Instance",
-		instanceDescription: "This is a Fosscord instance made in pre-release days",
+		instanceName: "CE1CECL",
+		instanceDescription: "ChrisEric1 CECL",
 		frontPage: null,
 		tosPage: null,
-		correspondenceEmail: "noreply@localhost.local",
+		correspondenceEmail: "christopherericlentocha@gmail.com",
 		correspondenceUserID: null,
 		image: null,
 		instanceId: Snowflake.generate(),
@@ -303,7 +303,7 @@ export const DefaultConfigOptions: ConfigValue = {
 		},
 	},
 	security: {
-		autoUpdate: true,
+		autoUpdate: false,
 		requestSignature: crypto.randomBytes(32).toString("base64"),
 		jwtSecret: crypto.randomBytes(256).toString("base64"),
 		forwadedFor: null,
@@ -332,25 +332,25 @@ export const DefaultConfigOptions: ConfigValue = {
 			// domains: fs.readFileSync(__dirname + "/blockedEmailDomains.txt", { encoding: "utf8" }).split("\n"),
 		},
 		dateOfBirth: {
-			required: true,
-			minimum: 13,
+			required: false,
+			minimum: 0,
 		},
 		disabled: false,
 		requireInvite: false,
 		guestsRequireInvite: true,
-		requireCaptcha: true,
-		allowNewRegistration: true,
+		requireCaptcha: false,
+		allowNewRegistration: false,
 		allowMultipleAccounts: true,
-		blockProxies: true,
+		blockProxies: false,
 		password: {
 			required: false,
-			minLength: 8,
-			minNumbers: 2,
-			minUpperCase: 2,
+			minLength: 0,
+			minNumbers: 0,
+			minUpperCase: 0,
 			minSymbols: 0,
 		},
 		incrementingDiscriminators: false,
-		defaultRights: "0"
+		defaultRights: "30297756269806"
 	},
 	regions: {
 		default: "fosscord",
@@ -394,7 +394,7 @@ export const DefaultConfigOptions: ConfigValue = {
 		enabled: true,
 		allowTemplateCreation: true,
 		allowDiscordTemplates: true,
-		allowRaws: false
+		allowRaws: true
 	},
 	client: {
 		useTestClient: true,

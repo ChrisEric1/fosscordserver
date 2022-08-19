@@ -52,6 +52,7 @@
 		"typescript-json-schema": "^0.54.0"
 	},
 	"dependencies": {
+		"@yukikaze-bot/erlpack": "^1.0.1",
 		"@babel/preset-typescript": "^7.15.0",
 		"@fosscord/util": "file:../util",
 		"ajv": "8.6.2",

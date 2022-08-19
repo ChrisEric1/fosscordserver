@@ -23,6 +23,7 @@
 		"typescript": "^4.2.3"
 	},
 	"dependencies": {
+		"@yukikaze-bot/erlpack": "^1.0.1",
 		"@fosscord/util": "file:../util",
 		"amqplib": "^0.10.1",
 		"dotenv": "^16.0.1",
