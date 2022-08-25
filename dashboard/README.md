@@ -9,4 +9,4 @@ A admin dashboard for fosscord-server
 -   [ ] Member managment (edit (disable, delete, premium, username, discriminator))
 -   [ ] Configuration ([Config.ts](https://github.com/fosscord/fosscord-server-util/blob/master/src/util/Config.ts))
 
-port = 3005
+port = 3001

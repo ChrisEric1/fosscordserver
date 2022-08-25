@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { CDNServer } from "./Server";
-const server = new CDNServer({ port: Number(process.env.PORT) || 3003 });
+const server = new CDNServer({ port: Number(process.env.PORT) || 3001 });
 server
 	.start()
 	.then(() => {

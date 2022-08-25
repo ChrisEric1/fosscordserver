@@ -40,15 +40,15 @@ async function main() {
 	// only set endpointPublic, if not already set
 	await Config.set({
 		cdn: {
-			endpointClient: "${location.host}",
-			endpointPrivate: `http://localhost:${port}`,
+			endpointClient: process.env.HTTP_HOST_PORT,
+			endpointPrivate: process.env.HTTP_HOST_PORT,
 		},
 		gateway: {
 			endpointClient:
-				'${location.protocol === "https:" ? "wss://" : "ws://"}${location.host}',
-			endpointPrivate: `ws://localhost:${port}`,
+				process.env.WS_HOST_PORT,
+			endpointPrivate: process.env.WS_HOST_PORT,
 			...(!Config.get().gateway.endpointPublic && {
-				endpointPublic: `ws://localhost:${port}`,
+				endpointPublic: process.env.WS_HOST_PORT,
 			}),
 		},
 		// regions: {
@@ -58,7 +58,7 @@ async function main() {
 		// 		{
 		// 			id: "fosscord",
 		// 			name: "Fosscord",
-		// 			endpoint: "127.0.0.1:3001",
+		// 			endpoint: process.env.HOST_PORT,
 		// 			vip: false,
 		// 			custom: false,
 		// 			deprecated: false,

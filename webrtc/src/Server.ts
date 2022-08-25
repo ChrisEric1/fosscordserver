@@ -3,7 +3,7 @@ import { Config, db } from "@fosscord/util";
 import mediasoup from "mediasoup";
 
 let port = Number(process.env.PORT);
-if (isNaN(port)) port = 3004;
+if (isNaN(port)) port = 3001;
 
 export class Server {
 	public ws: WebSocketServer;
@@ -21,8 +21,8 @@ export class Server {
 						op: 2,
 						d: {
 							ssrc: 1,
-							ip: "127.0.0.1",
-							port: 3004,
+							ip: process.env.HOST_PORT,
+							port: 3001,
 							modes: [
 								"xsalsa20_poly1305",
 								"xsalsa20_poly1305_suffix",
@@ -41,6 +41,6 @@ export class Server {
 		await (db as Promise<Connection>);
 		await Config.init();
 		console.log("[DB] connected");
-		console.log(`[WebRTC] online on 0.0.0.0:${port}`);
+		console.log(`[WebRTC] online on `+process.env.HOST_PORT);
 	}
 }

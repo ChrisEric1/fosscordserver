@@ -51,7 +51,7 @@ export class Server {
 		await initEvent();
 		if (!this.server.listening) {
 			this.server.listen(this.port);
-			console.log(`[Gateway] online on 0.0.0.0:${this.port}`);
+			console.log(`[Gateway] online on `+process.env.HTTP_HOST_PORT);
 		}
 	}
 

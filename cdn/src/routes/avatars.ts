@@ -44,8 +44,6 @@ router.post(
 		if (ANIMATED_MIME_TYPES.includes(type.mime)) hash = `a_${hash}`; // animated icons have a_ infront of the hash
 
 		const path = `avatars/${user_id}/${hash}`;
-		const endpoint =
-			Config.get().cdn.endpointPublic || "http://localhost:3003";
 
 		await storage.set(path, buffer);
 
@@ -53,7 +51,7 @@ router.post(
 			id: hash,
 			content_type: type.mime,
 			size,
-			url: `/${req.baseUrl}/${user_id}/${hash}`,
+			url: `${req.baseUrl}/${user_id}/${hash}`,
 		});
 	}
 );

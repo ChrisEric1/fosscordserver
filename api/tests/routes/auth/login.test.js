@@ -1,5 +1,5 @@
 const supertest = require("supertest");
-const request = supertest("http://localhost:3001");
+const request = supertest(process.env.HTTP_HOST_PORT);
 
 describe("/api/auth/login", () => {
 	describe("POST", () => {

@@ -26,8 +26,8 @@ if (process.env.STORAGE_PROVIDER === "file") {
 const { CDNServer } = require("../dist/Server");
 const { Config } = require("@fosscord/util");
 const supertest = require("supertest");
-const request = supertest("http://localhost:3003");
-const server = new CDNServer({ port: Number(process.env.PORT) || 3003 });
+const request = supertest(process.env.HTTP_HOST_PORT);
+const server = new CDNServer({ port: Number(process.env.PORT) || 3001 });
 
 beforeAll(async () => {
 	await server.start();
@@ -87,7 +87,7 @@ describe("/attachments", () => {
 					.set({ signature: Config.get().security.requestSignature })
 					.attach("file", __dirname + "/antman.jpg");
 				request
-					.get(response.body.url.replace("http://localhost:3003", ""))
+					.get(response.body.url.replace(process.env.HTTP_HOST_PORT, ""))
 					.then((x) => {
 						expect(x.statusCode).toBe(200);
 					});
@@ -103,7 +103,7 @@ describe("/attachments", () => {
 					.attach("file", __dirname + "/antman.jpg");
 				request
 					.delete(
-						response.body.url.replace("http://localhost:3003", "")
+						response.body.url.replace(process.env.HTTP_HOST_PORT, "")
 					)
 					.then((x) => {
 						expect(x.body.success).toBeDefined();
@@ -151,7 +151,7 @@ describe("/avatars", () => {
 					.set({ signature: Config.get().security.requestSignature })
 					.attach("file", __dirname + "/antman.jpg");
 				request
-					.get(response.body.url.replace("http://localhost:3003", ""))
+					.get(response.body.url.replace(process.env.HTTP_HOST_PORT, ""))
 					.then((x) => {
 						expect(x.statusCode).toBe(200);
 					});
@@ -167,7 +167,7 @@ describe("/avatars", () => {
 					.attach("file", __dirname + "/antman.jpg");
 				request
 					.delete(
-						response.body.url.replace("http://localhost:3003", "")
+						response.body.url.replace(process.env.HTTP_HOST_PORT, "")
 					)
 					.then((x) => {
 						expect(x.body.success).toBeDefined();

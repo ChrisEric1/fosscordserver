@@ -8,8 +8,8 @@ router.get("/",route({}), async (req: Request, res: Response) => {
     const { cdn, gateway } = Config.get();
     
     const IdentityForm = {
-        cdn: cdn.endpointPublic || process.env.CDN || "http://localhost:3001",
-        gateway: gateway.endpointPublic || process.env.GATEWAY || "ws://localhost:3002"
+        cdn: cdn.endpointPublic || process.env.HTTP_HOST_PORT,
+        gateway: process.env.WS_HOST_PORT
     };
 
 	res.json(IdentityForm);

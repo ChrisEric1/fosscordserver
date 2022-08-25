@@ -29,7 +29,7 @@ let guild: Guild;
 let channel: Channel;
 
 const request = async (path: string, opts: any = {}): Promise<any> => {
-	const response = await fetch(`http://localhost:3001/api${path}`, {
+	const response = await fetch(process.env.HTTP_HOST_PORT+`/api${path}`, {
 		...opts,
 		method: opts.method || opts.body ? "POST" : "GET",
 		body: opts.body && JSON.stringify(opts.body),
@@ -121,7 +121,7 @@ describe("Automatic unit tests with route description middleware", () => {
 			}
 
 			try {
-				const response = await fetch(`http://localhost:3001/api${urlPath}`, {
+				const response = await fetch(process.env.HTTP_HOST_PORT+`/api${urlPath}`, {
 					method: method.toUpperCase(),
 					body: JSON.stringify(route.test.body),
 					headers: { ...route.test.headers, authorization: token }

@@ -31,9 +31,6 @@ router.post(
 		const id = Snowflake.generate();
 		const path = `attachments/${channel_id}/${id}/${filename}`;
 
-		const endpoint =
-			Config.get()?.cdn.endpointPublic || "http://localhost:3003";
-
 		await storage.set(path, buffer);
 		let width;
 		let height;

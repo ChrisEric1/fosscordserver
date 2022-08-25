@@ -44,7 +44,7 @@ export async function Connection(
 
 		console.log(`[Gateway] Connections: ${this.clients.size}`);
 
-		const { searchParams } = new URL(`http://localhost${request.url}`);
+		const { searchParams } = new URL(process.env.HTTP_HOST_PORT+`${request.url}`);
 		// @ts-ignore
 		socket.encoding = searchParams.get("encoding") || "json";
 		if (!["json", "etf"].includes(socket.encoding)) {
