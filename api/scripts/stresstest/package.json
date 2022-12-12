@@ -10,9 +10,9 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@yukikaze-bot/erlpack": "^1.0.1",
-		"figlet": "^1.5.2",
-		"node-fetch": "^2.6.6",
-		"request": "^2.88.2"
+		"@yukikaze-bot/erlpack": "1.0.1",
+		"figlet": "1.5.2",
+		"node-fetch": "2.6.7",
+		"request": "2.88.2"
 	}
 }

@@ -20,7 +20,7 @@
 		"url": "https://github.com/fosscord/fosscord-server/issues"
 	},
 	"dependencies": {
-		"@yukikaze-bot/erlpack": "^1.0.1"
+		"@yukikaze-bot/erlpack": "1.0.1"
 	},
 	"homepage": "https://github.com/fosscord/fosscord-server#readme"
 }
