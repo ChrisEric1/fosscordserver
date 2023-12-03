@@ -53,4 +53,4 @@ discordLike -= Rights.FLAGS.POGGERS;
 discordLike -= Rights.FLAGS.SELF_EDIT_NAME;
 //end 1760002018
 
-console.log(`1760002018-like rights: ${discordRights}`);
+console.log(`1760002018-like rights:`, discordLike);
