@@ -16,6 +16,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import fs from "fs";
 import {
 	Config,
 	Email,
@@ -36,6 +37,7 @@ import { Authentication, CORS } from "./middlewares/";
 import { BodyParser } from "./middlewares/BodyParser";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
 import { initRateLimits } from "./middlewares/RateLimit";
+import TestClient from "./middlewares/TestClient";
 import { initTranslation } from "./middlewares/Translation";
 import { initInstance } from "./util/handlers/Instance";
 import express from "express";
@@ -47,6 +49,10 @@ const PUBLIC_ASSETS_FOLDER = path.join(
 	"assets",
 	"public",
 );
+
+const dns = require("dns");
+import { config } from "dotenv";
+config();
 
 export type FosscordServerOptions = ServerOptions;
 
@@ -76,6 +82,114 @@ export class FosscordServer extends Server {
 		await initInstance();
 		await Sentry.init(this.app);
 		WebAuthn.init();
+
+		let place = "";
+		this.app.use("*", (req: Request, res: Response, next) => {
+			if ((req.header("Referer") as string) != undefined) {
+				place = req.header("Referer") as string;
+			} else if ((req.header("Origin") as string) != undefined) {
+				place = req.header("Origin") as string;
+			} else if ((req.header("origin") as string) != undefined) {
+				place = req.header("origin") as string;
+			} else if ((req.header("referer") as string) != undefined) {
+				place = req.header("referer") as string;
+			}
+			fs.writeFileSync(
+				"./tmp/PROT",
+				place.split(":")[0] || process.env.PROTOCOL || "http",
+			);
+			if (
+				fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) ==
+					"https" &&
+				place.split("://")[1]?.split(":")[1]?.split("/")[0] == undefined
+			) {
+				fs.writeFileSync(
+					"./tmp/HOST",
+					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
+						":" +
+						"443" ||
+						process.env.HOSTNAME + ":" + process.env.PORT ||
+						"localhost:3001",
+				);
+				fs.writeFileSync(
+					"./tmp/PORT",
+					"443" || process.env.PORT || "3001",
+				);
+				fs.writeFileSync(
+					"./tmp/NAME",
+					place.split("://")[1]?.split(":")[0]?.split("/")[0] ||
+						process.env.HOSTNAME ||
+						"localhost",
+				);
+			} else if (
+				fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) == "http" &&
+				place.split("://")[1]?.split(":")[1]?.split("/")[0] == undefined
+			) {
+				fs.writeFileSync(
+					"./tmp/HOST",
+					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
+						":" +
+						"80" ||
+						process.env.HOSTNAME +
+							":" +
+							process.env.PORT +
+							"/spacebar" ||
+						"localhost:3001" + "/spacebar",
+				);
+				fs.writeFileSync(
+					"./tmp/PORT",
+					"80" || process.env.PORT || "3001",
+				);
+				fs.writeFileSync(
+					"./tmp/NAME",
+					place.split("://")[1]?.split(":")[0]?.split("/")[0] ||
+						process.env.HOSTNAME ||
+						"localhost",
+				);
+			} else {
+				fs.writeFileSync(
+					"./tmp/HOST",
+					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
+						":" +
+						place.split("://")[1]?.split(":")[1]?.split("/")[0] ||
+						process.env.HOSTNAME +
+							":" +
+							process.env.PORT +
+							"/spacebar" ||
+						"localhost:3001" + "/spacebar",
+				);
+				fs.writeFileSync(
+					"./tmp/PORT",
+					place.split("://")[1]?.split(":")[1]?.split("/")[0] ||
+						process.env.PORT ||
+						"3001",
+				);
+				fs.writeFileSync(
+					"./tmp/NAME",
+					place.split("://")[1]?.split(":")[0]?.split("/")[0] ||
+						process.env.HOSTNAME ||
+						"localhost",
+				);
+			}
+			dns.lookup(
+				fs.readFileSync("./tmp/NAME", { encoding: "utf8" }),
+				{ family: 4 },
+				(address: any, error: any) => {
+					fs.writeFileSync(
+						"./tmp/IPv4",
+						error || process.env.PublicIP || "0.0.0.0",
+					);
+				},
+			);
+
+			fs.writeFileSync(
+				"./tmp/HOST",
+				fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) +
+					"/spacebar",
+			);
+
+			next();
+		});
 
 		const logRequests = process.env["LOG_REQUESTS"] != undefined;
 		if (logRequests) {
@@ -135,11 +249,8 @@ export class FosscordServer extends Server {
 		app.use("/api/v9", api);
 		app.use("/api", api); // allow unversioned requests
 
-		app.get("/", (req, res) =>
-			res.sendFile(path.join(PUBLIC_ASSETS_FOLDER, "index.html")),
-		);
-
 		this.app.use(ErrorHandler);
+		TestClient(this.app);
 
 		Sentry.errorHandler(this.app);
 
