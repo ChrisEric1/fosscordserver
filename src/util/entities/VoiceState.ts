@@ -85,7 +85,7 @@ export class VoiceState extends BaseClass {
 	self_stream?: boolean;
 
 	@Column({ nullable: true })
-	self_video: boolean;
+	self_video?: boolean;
 
 	@Column()
 	suppress: boolean; // whether this user is muted by the current user

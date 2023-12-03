@@ -17,6 +17,6 @@
 */
 
 export class DateOfBirthConfiguration {
-	required: boolean = true;
-	minimum: number = 13; // in years
+	required: boolean = false;
+	minimum: number = 0; // in years
 }

@@ -15,9 +15,21 @@
 	You should have received a copy of the GNU Affero General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-
+import fs from "fs";
 export class EndpointConfiguration {
-	endpointClient: string | null = null;
-	endpointPrivate: string | null = null;
-	endpointPublic: string | null = null;
+	endpointClient: string | null =
+		fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) +
+			"://" +
+			fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) ||
+		"http://localhost:3001";
+	endpointPrivate: string | null =
+		fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) +
+			"://" +
+			fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) ||
+		"http://localhost:3001";
+	endpointPublic: string | null =
+		fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) +
+			"://" +
+			fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) ||
+		"http://localhost:3001";
 }

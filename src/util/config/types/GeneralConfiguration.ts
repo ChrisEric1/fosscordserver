@@ -17,15 +17,22 @@
 */
 
 import { Snowflake } from "@fosscord/util";
-
+import fs from "fs";
 export class GeneralConfiguration {
-	instanceName: string = "Fosscord Instance";
-	instanceDescription: string | null =
-		"This is a Fosscord instance made in the pre-release days";
-	frontPage: string | null = null;
-	tosPage: string | null = null;
-	correspondenceEmail: string | null = null;
-	correspondenceUserID: string | null = null;
+	instanceName: string = "CE1CECL";
+	instanceDescription: string | null = "ChrisEric1 CECL";
+	frontPage: string | null =
+		fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) +
+			"://" +
+			fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) ||
+		"http://localhost:3001";
+	tosPage: string | null =
+		fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) +
+			"://" +
+			fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) ||
+		"http://localhost:3001";
+	correspondenceEmail: string | null = "christopherericlentocha@gmail.com";
+	correspondenceUserID: string | null = "christopherericlentocha@gmail.com";
 	image: string | null = null;
 	instanceId: string = Snowflake.generate();
 }

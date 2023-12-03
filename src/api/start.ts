@@ -26,13 +26,14 @@ config();
 import { FosscordServer } from "./Server";
 import cluster from "cluster";
 import os from "os";
-let cores = 1;
+const cores = 1;
+/*
 try {
 	cores = Number(process.env.THREADS) || os.cpus().length;
 } catch {
 	console.log("[API] Failed to get thread count! Using 1...");
 }
-
+*/
 if (cluster.isPrimary && process.env.NODE_ENV == "production") {
 	console.log(`Primary ${process.pid} is running`);
 

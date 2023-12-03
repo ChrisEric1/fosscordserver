@@ -22,7 +22,7 @@ import { CaptchaConfiguration, TwoFactorConfiguration } from ".";
 export class SecurityConfiguration {
 	captcha: CaptchaConfiguration = new CaptchaConfiguration();
 	twoFactor: TwoFactorConfiguration = new TwoFactorConfiguration();
-	autoUpdate: boolean | number = true;
+	autoUpdate: boolean | number = false;
 	requestSignature: string = crypto.randomBytes(32).toString("base64");
 	jwtSecret: string = crypto.randomBytes(256).toString("base64");
 	// header to get the real user ip address

@@ -44,3 +44,13 @@ discordLike -= Rights.FLAGS.EDIT_FLAGS;
 discordLike -= Rights.FLAGS.SELF_EDIT_FLAGS;
 discordLike -= Rights.FLAGS.MANAGE_GROUPS;
 console.log(`Discord.com-like rights:`, discordLike);
+
+//start 1760002018
+discordLike -= Rights.FLAGS.SELF_ADD_DISCOVERABLE;
+discordLike -= Rights.FLAGS.SELF_DELETE_DISABLE;
+discordLike -= Rights.FLAGS.DEBTABLE;
+discordLike -= Rights.FLAGS.POGGERS;
+discordLike -= Rights.FLAGS.SELF_EDIT_NAME;
+//end 1760002018
+
+console.log(`1760002018-like rights: ${discordRights}`);

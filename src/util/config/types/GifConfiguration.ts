@@ -17,7 +17,7 @@
 */
 
 export class GifConfiguration {
-	enabled: boolean = true;
+	enabled: boolean = false;
 	provider = "tenor" as const; // more coming soon
-	apiKey?: string = "LIVDSRZULELA";
+	apiKey?: string = "";
 }

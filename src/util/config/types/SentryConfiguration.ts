@@ -17,11 +17,14 @@
 */
 
 import { hostname } from "os";
-
+import fs from "fs";
 export class SentryConfiguration {
 	enabled: boolean = false;
 	endpoint: string =
-		"https://05e8e3d005f34b7d97e920ae5870a5e5@sentry.thearcanebrony.net/6";
+		fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) +
+			"://" +
+			fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) ||
+		"http://localhost:3001";
 	traceSampleRate: number = 1.0;
 	environment: string = hostname();
 }

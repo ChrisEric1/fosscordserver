@@ -15,10 +15,14 @@
 	You should have received a copy of the GNU Affero General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-
+import fs from "fs";
 export class ApiConfiguration {
 	defaultVersion: string = "9";
 	activeVersions: string[] = ["6", "7", "8", "9"];
-	useFosscordEnhancements: boolean = true;
-	endpointPublic: string = "";
+	useFosscordEnhancements: boolean = false;
+	endpointPublic: string =
+		fs.readFileSync("./tmp/PROT", { encoding: "utf8" }) +
+			"://" +
+			fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) ||
+		"http://localhost:3001";
 }

@@ -34,10 +34,10 @@ export class UserSettings extends BaseClassWithoutId {
 	animate_emoji: boolean = true;
 
 	@Column({ nullable: true })
-	animate_stickers: number = 0;
+	animate_stickers: number = 1;
 
 	@Column({ nullable: true })
-	contact_sync_enabled: boolean = false;
+	contact_sync_enabled: boolean = true;
 
 	@Column({ nullable: true })
 	convert_emoticons: boolean = false;
@@ -49,16 +49,16 @@ export class UserSettings extends BaseClassWithoutId {
 	default_guilds_restricted: boolean = false;
 
 	@Column({ nullable: true })
-	detect_platform_accounts: boolean = false;
+	detect_platform_accounts: boolean = true;
 
 	@Column({ nullable: true })
 	developer_mode: boolean = true;
 
 	@Column({ nullable: true })
-	disable_games_tab: boolean = true;
+	disable_games_tab: boolean = false;
 
 	@Column({ nullable: true })
-	enable_tts_command: boolean = false;
+	enable_tts_command: boolean = true;
 
 	@Column({ nullable: true })
 	explicit_content_filter: number = 0;
@@ -67,10 +67,10 @@ export class UserSettings extends BaseClassWithoutId {
 	friend_source_flags: FriendSourceFlags = { all: true };
 
 	@Column({ nullable: true })
-	gateway_connected: boolean = false;
+	gateway_connected: boolean = true;
 
 	@Column({ nullable: true })
-	gif_auto_play: boolean = false;
+	gif_auto_play: boolean = true;
 
 	@Column({ nullable: true, type: "simple-json" })
 	guild_folders: GuildFolder[] = []; // every top guild is displayed as a "folder"
@@ -106,10 +106,10 @@ export class UserSettings extends BaseClassWithoutId {
 	show_current_game: boolean = true;
 
 	@Column({ nullable: true })
-	status: "online" | "offline" | "dnd" | "idle" | "invisible" = "online";
+	status: "online" | "offline" | "dnd" | "idle" | "invisible" = "dnd";
 
 	@Column({ nullable: true })
-	stream_notifications_enabled: boolean = false;
+	stream_notifications_enabled: boolean = true;
 
 	@Column({ nullable: true })
 	theme: "dark" | "light" = "dark"; // dark

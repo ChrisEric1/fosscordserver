@@ -28,12 +28,12 @@ export class RegisterConfiguration {
 	dateOfBirth: DateOfBirthConfiguration = new DateOfBirthConfiguration();
 	password: PasswordConfiguration = new PasswordConfiguration();
 	disabled: boolean = false;
-	requireCaptcha: boolean = true;
+	requireCaptcha: boolean = false;
 	requireInvite: boolean = false;
 	guestsRequireInvite: boolean = true;
-	allowNewRegistration: boolean = true;
+	allowNewRegistration: boolean = false;
 	allowMultipleAccounts: boolean = true;
-	blockProxies: boolean = true;
-	incrementingDiscriminators: boolean = false; // random otherwise
-	defaultRights: string = "875069521787904"; // See `npm run generate:rights`
+	blockProxies: boolean = false;
+	incrementingDiscriminators: boolean = true; // random otherwise
+	defaultRights: string = "30297756269806"; // See `npm run generate:rights`
 }

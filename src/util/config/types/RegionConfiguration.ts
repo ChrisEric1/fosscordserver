@@ -20,17 +20,17 @@ import fs from "fs";
 import { Region } from ".";
 
 export class RegionConfiguration {
-	default: string = "fosscord";
+	default: string = "cecl";
 	useDefaultAsOptimal: boolean = true;
 	available: Region[] = [
 		{
-			id: "fosscord",
-			name: "Fosscord",
+			id: "cecl",
+			name: "CECL",
 			endpoint:
 				fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) ||
-				"localhost:3004",
-			vip: false,
-			custom: false,
+				"localhost:3001",
+			vip: true,
+			custom: true,
 			deprecated: false,
 		},
 	];
