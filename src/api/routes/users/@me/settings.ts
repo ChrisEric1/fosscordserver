@@ -42,9 +42,9 @@ router.patch(
 			relations: ["settings"],
 		});
 
-		user.settings.assign(body);
+		user.settings?.assign(body);
 
-		await user.settings.save();
+		await user.settings?.save();
 
 		res.json({ ...user.settings, index: undefined });
 	},

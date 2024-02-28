@@ -16,7 +16,15 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { Channel, Emoji, Guild, Member, Role, Sticker } from "../entities";
+import {
+	Channel,
+	Emoji,
+	Guild,
+	Member,
+	Role,
+	Sticker,
+	VoiceState,
+} from "../entities";
 
 export interface IReadyGuildDTO {
 	application_command_counts?: { 1: number; 2: number; 3: number }; // ????????????
@@ -30,6 +38,7 @@ export interface IReadyGuildDTO {
 	member_count: number | undefined;
 	members: Member[];
 	premium_subscription_count: number | undefined;
+	presences: unknown[];
 	properties: {
 		name: string;
 		description?: string | null;
@@ -63,6 +72,7 @@ export interface IReadyGuildDTO {
 	stage_instances: unknown[];
 	stickers: Sticker[];
 	threads: unknown[];
+	voice_states: VoiceState[];
 	version: string;
 }
 
@@ -78,6 +88,7 @@ export class ReadyGuildDTO implements IReadyGuildDTO {
 	member_count: number | undefined;
 	members: Member[];
 	premium_subscription_count: number | undefined;
+	presences: unknown[];
 	properties: {
 		name: string;
 		description?: string | null;
@@ -111,6 +122,7 @@ export class ReadyGuildDTO implements IReadyGuildDTO {
 	stage_instances: unknown[];
 	stickers: Sticker[];
 	threads: unknown[];
+	voice_states: VoiceState[];
 	version: string;
 
 	constructor(guild: Guild) {
@@ -119,16 +131,17 @@ export class ReadyGuildDTO implements IReadyGuildDTO {
 			2: 2,
 			3: 2,
 		}; // ?????
-		this.channels = guild.channels;
+		this.channels = guild.channels ?? [];
 		this.data_mode = "full";
-		this.emojis = guild.emojis;
+		this.emojis = guild.emojis ?? [];
 		this.guild_scheduled_events = [];
 		this.id = guild.id;
 		this.large = guild.large;
 		this.lazy = true; // ??????????
 		this.member_count = guild.member_count;
-		this.members = guild.members;
+		this.members = guild.members ?? [];
 		this.premium_subscription_count = guild.premium_subscription_count;
+		this.presences = [];
 		this.properties = {
 			name: guild.name,
 			description: guild.description,
@@ -158,10 +171,11 @@ export class ReadyGuildDTO implements IReadyGuildDTO {
 			nsfw_level: guild.nsfw_level,
 			hub_type: null,
 		};
-		this.roles = guild.roles;
+		this.roles = guild.roles ?? [];
 		this.stage_instances = [];
-		this.stickers = guild.stickers;
+		this.stickers = guild.stickers ?? [];
 		this.threads = [];
+		this.voice_states = guild.voice_states ?? [];
 		this.version = "1"; // ??????
 	}
 
