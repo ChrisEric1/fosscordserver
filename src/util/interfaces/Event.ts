@@ -109,16 +109,8 @@ export interface ReadyEventData {
 	shard?: [number, number];
 	user_settings?: UserSettings;
 	relationships?: PublicRelationship[]; // TODO
-	read_state: {
-		entries: ReadState[]; // TODO
-		partial: boolean;
-		version: number;
-	};
-	user_guild_settings?: {
-		entries: UserGuildSettings[];
-		version: number;
-		partial: boolean;
-	};
+	read_state: ReadState[];
+	user_guild_settings?: UserGuildSettings[];
 	application?: {
 		id: string;
 		flags: number;

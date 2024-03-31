@@ -291,16 +291,8 @@ export async function onIdentify(this: WebSocket, data: Payload) {
 		guild_experiments: [], // TODO
 		geo_ordered_rtc_regions: [], // TODO
 		relationships: user.relationships.map((x) => x.toPublicRelationship()),
-		read_state: {
-			entries: read_states,
-			partial: false,
-			version: 304128,
-		},
-		user_guild_settings: {
-			entries: user_guild_settings_entries,
-			partial: false, // TODO partial
-			version: 642,
-		},
+		read_state: read_states,
+		user_guild_settings: user_guild_settings_entries,
 		private_channels: channels,
 		session_id: session_id,
 		analytics_token: "", // TODO

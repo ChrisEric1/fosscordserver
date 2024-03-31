@@ -105,13 +105,9 @@ export class FosscordServer extends Server {
 			) {
 				fs.writeFileSync(
 					"./tmp/HOST",
-					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
-						"/spacebar" ||
-						process.env.HOSTNAME +
-							":" +
-							process.env.PORT +
-							"/spacebar" ||
-						"localhost" + "/spacebar",
+					place.split("://")[1]?.split(":")[0]?.split("/")[0] ||
+						process.env.HOSTNAME + ":" + process.env.PORT ||
+						"localhost",
 				);
 				fs.writeFileSync(
 					"./tmp/PORT",
@@ -129,13 +125,9 @@ export class FosscordServer extends Server {
 			) {
 				fs.writeFileSync(
 					"./tmp/HOST",
-					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
-						"/spacebar" ||
-						process.env.HOSTNAME +
-							":" +
-							process.env.PORT +
-							"/spacebar" ||
-						"localhost" + "/spacebar",
+					place.split("://")[1]?.split(":")[0]?.split("/")[0] ||
+						process.env.HOSTNAME + ":" + process.env.PORT ||
+						"localhost",
 				);
 				fs.writeFileSync(
 					"./tmp/PORT",
@@ -152,13 +144,9 @@ export class FosscordServer extends Server {
 					"./tmp/HOST",
 					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
 						":" +
-						place.split("://")[1]?.split(":")[1]?.split("/")[0] +
-						"/spacebar" ||
-						process.env.HOSTNAME +
-							":" +
-							process.env.PORT +
-							"/spacebar" ||
-						"localhost:3001" + "/spacebar",
+						place.split("://")[1]?.split(":")[1]?.split("/")[0] ||
+						process.env.HOSTNAME + ":" + process.env.PORT ||
+						"localhost:3001",
 				);
 				fs.writeFileSync(
 					"./tmp/PORT",
