@@ -106,10 +106,12 @@ export class FosscordServer extends Server {
 				fs.writeFileSync(
 					"./tmp/HOST",
 					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
-						":" +
-						"443" ||
-						process.env.HOSTNAME + ":" + process.env.PORT ||
-						"localhost:3001",
+						"/spacebar" ||
+						process.env.HOSTNAME +
+							":" +
+							process.env.PORT +
+							"/spacebar" ||
+						"localhost" + "/spacebar",
 				);
 				fs.writeFileSync(
 					"./tmp/PORT",
@@ -128,13 +130,12 @@ export class FosscordServer extends Server {
 				fs.writeFileSync(
 					"./tmp/HOST",
 					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
-						":" +
-						"80" ||
+						"/spacebar" ||
 						process.env.HOSTNAME +
 							":" +
 							process.env.PORT +
 							"/spacebar" ||
-						"localhost:3001" + "/spacebar",
+						"localhost" + "/spacebar",
 				);
 				fs.writeFileSync(
 					"./tmp/PORT",
@@ -151,7 +152,8 @@ export class FosscordServer extends Server {
 					"./tmp/HOST",
 					place.split("://")[1]?.split(":")[0]?.split("/")[0] +
 						":" +
-						place.split("://")[1]?.split(":")[1]?.split("/")[0] ||
+						place.split("://")[1]?.split(":")[1]?.split("/")[0] +
+						"/spacebar" ||
 						process.env.HOSTNAME +
 							":" +
 							process.env.PORT +
@@ -180,12 +182,6 @@ export class FosscordServer extends Server {
 						error || process.env.PublicIP || "0.0.0.0",
 					);
 				},
-			);
-
-			fs.writeFileSync(
-				"./tmp/HOST",
-				fs.readFileSync("./tmp/HOST", { encoding: "utf8" }) +
-					"/spacebar",
 			);
 
 			next();
